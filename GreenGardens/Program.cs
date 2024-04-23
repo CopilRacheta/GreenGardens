@@ -1,4 +1,22 @@
+using Microsoft.EntityFrameworkCore;
+using GreenGardens.Model;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using GreenGardens.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<AppDbContext>(option => option.UseSqlServer(connectionString));
+
+builder.Services.AddAuthentication("Cookies")
+    .AddCookie("Cookies", options =>
+     {
+         options.LoginPath = "/Login";
+         options.LogoutPath = "/Logout";
+     });
 
 // Add services to the container.
 builder.Services.AddRazorPages();
