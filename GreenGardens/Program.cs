@@ -36,8 +36,9 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
-
 app.MapRazorPages();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.Run();

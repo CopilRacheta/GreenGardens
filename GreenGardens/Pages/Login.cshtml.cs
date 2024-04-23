@@ -35,15 +35,15 @@ namespace GreenGardens.Pages
                 return Page();
             }
 
-            var customer = _context.Customers.FirstOrDefault(u=>u.EmailAddress == EmailAddress);
+            var user = _context.Customers.FirstOrDefault(u =>u.EmailAddress == EmailAddress);
 
-            if(customer != null && VerifyPassword(Password, customer.Password))
+            if(user != null && VerifyPassword(Password, user.Password))
             {
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, customer.Fname),
-                    new Claim(ClaimTypes.Email, customer.EmailAddress),
-                    new Claim(ClaimTypes.Role, customer.IsItAdmin ? "Admin" : "User"),
+                    new Claim(ClaimTypes.Name, user.Fname),
+                    new Claim(ClaimTypes.Email, user.EmailAddress),
+                    new Claim(ClaimTypes.Role, user.IsItAdmin ? "Admin" : "User"),
                 };
 
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
