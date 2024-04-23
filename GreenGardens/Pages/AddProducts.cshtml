@@ -1,0 +1,77 @@
+﻿@page
+@model GreenGardens.Pages.AddProductsModel
+@{
+}
+<h1>Add Product</h1>
+
+<div class="container border p-5">
+    <form method="post">
+        <!-- Description Field -->
+        <div class="form-group row">
+            <div class="col-4">
+                <label>Name:</label>
+            </div>
+            <div class="col-8">
+                <input asp-for="Product.Name" class="form-control" />
+
+            </div>
+        </div>
+
+        <!-- Due Date Field -->
+        <div class="form-group row">
+            <div class="col-4">
+                <label>Description</label>
+            </div>
+            <div class="col-8">
+                <input asp-for="Product.Description" class="form-control" />
+            </div>
+        </div>
+
+         <!-- Due Date Field -->
+        <div class="form-group row">
+            <div class="col-4">
+                <label>Price</label>
+            </div>
+            <div class="col-8">
+                <input asp-for="Product.Price" class="form-control" />
+            </div>
+        </div>
+
+          <!-- Due Date Field -->
+        <div class="form-group row">
+            <div class="col-4">
+                <label>Stock</label>
+            </div>
+            <div class="col-8">
+                <input asp-for="Product.Stock" class="form-control" />
+            </div>
+        </div>
+
+          <!-- Due Date Field -->
+        <div class="form-group row">
+            <div class="col-4">
+                <label>ExpectedStock</label>
+            </div>
+            <div class="col-8">
+                <input asp-for="Product.ExpectedStock" class="form-control" />
+            </div>
+        </div>
+
+         <!-- Due Date Field -->
+        <div class="form-group row">
+            <div class="col-4">
+                <label>LoyalityPoints</label>
+            </div>
+            <div class="col-8">
+                <input asp-for="Product.LoyalityPoints" class="form-control" />
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-group row">
+            <div class="col">
+                <button type="submit" class="btn btn-block btn-secondary">Add Task</button>
+            </div>
+        </div>
+    </form>
+</div>

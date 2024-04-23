@@ -27,10 +27,17 @@
                     <img src="@product.ImagePath" alt="Product Image" style="width:100px">
                 </td>
                 <td>@product.Description</td>
-                <td>@product.Price</td> 
-                <td>@product.Stock</td>
-                <td>@product.ExpectedStock</td> 
-                
+                <td>@product.Price.ToString()</td>
+                <td>@product.Stock.ToString()</td>
+                <td>@product.ExpectedStock.ToString()</td>
+                <td>@product.LoyalityPoints.ToString()</td>
+                <td>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                    {
+                        <a asp-page="/EditProduct" asp-route-id="@product.Id" class="btn btn-primary">Edit</a>
+
+                    }
+                </td>
             </tr>
         }
 
