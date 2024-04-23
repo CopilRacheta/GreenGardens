@@ -14,6 +14,9 @@ namespace GreenGardens.Model
         [DataType(DataType.Currency)]
         public decimal Price { get; set; }
 
+        [Required, StringLength(100)]
+        public string Description { get; set; }
+
         [AllowNull]
         public string? ImagePath { get; set; }
 

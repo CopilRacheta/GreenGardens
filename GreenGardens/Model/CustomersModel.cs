@@ -22,7 +22,7 @@ namespace GreenGardens.Model
         public string Password { get; set; }
 
         [Required]
-        public string IsItAdmin { get; set; }
+        public bool IsItAdmin { get; set; }
 
         public int LoyalityPoints { get; set; }
 

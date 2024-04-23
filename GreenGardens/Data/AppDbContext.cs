@@ -13,7 +13,7 @@ namespace GreenGardens.Data
 
         public object Items { get; internal set; }
 
-        public AppDbContext(DbContextOptions<AppDbContext>options)
+        public AppDbContext(DbContextOptions<AppDbContext>options) : base(options)
         {
 
         }
