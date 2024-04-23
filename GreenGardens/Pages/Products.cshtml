@@ -2,3 +2,39 @@
 @model GreenGardens.Pages.ProductsModel
 @{
 }
+
+
+<h2>Products</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>ExpectedStock</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model.Products)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>
+                    <img src="@product.ImagePath" alt="Product Image" style="width:100px">
+                </td>
+                <td>@product.Description</td>
+                <td>@product.Price</td> 
+                <td>@product.Stock</td>
+                <td>@product.ExpectedStock</td> 
+                
+            </tr>
+        }
+
+
+
+    </tbody>
+</table>

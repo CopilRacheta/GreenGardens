@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace GreenGardens.Model
 {
-    public class ProductsModel
+    public class ProductModel
     {
         [Key]
         public int Guid { get; set; }

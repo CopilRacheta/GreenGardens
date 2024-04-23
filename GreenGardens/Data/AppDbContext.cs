@@ -9,7 +9,7 @@ namespace GreenGardens.Data
 
         public DbSet<CustomersModel> Customers { get; set; }
 
-        public DbSet<ProductsModel> Products { get; set; }
+        public DbSet<ProductModel> Products { get; set; }
 
         public object Items { get; internal set; }
 
