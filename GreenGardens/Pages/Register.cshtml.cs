@@ -32,7 +32,7 @@ namespace GreenGardens.Pages
             }
             Customer.Password = HashPassword(Customer.Password);
             _context.Customers.Add(Customer);
-            _context.SavedChanges();
+            _context.SaveChanges();
             return RedirectToPage("Login");
         }
 
