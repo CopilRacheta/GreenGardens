@@ -53,7 +53,7 @@ namespace GreenGardens.Pages
 
             await _dbConnection.SaveChangesAsync();
 
-            return RedirectToAction("Index");
+            return RedirectToPage("Products");
         }
     }
 }

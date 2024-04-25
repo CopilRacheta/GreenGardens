@@ -1,0 +1,45 @@
+﻿@page
+@model GreenGardens.Graphs.GraphsModel
+@{
+}
+
+<h2>Tasks Completion Graph</h2>
+<div>
+	<canvas id="GreenGardensGraphs"></canvas>
+</div>
+
+@section Scripts {
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+			var ctx = document.getElementById('GreenGardensGraphs').getContext('2d');
+			var tasksData = @Html.Raw(Model.ProductsJson);
+			var tasksGraph = new Chart(ctx, {
+			type: 'bar',
+		data: {
+			labels: tasksData.map(t => new String(t.Name).toString()),
+			datasets: [{
+				label: 'Stock',
+				data: tasksData.map(t => t.Stock),
+				backgroundColor: 'rgba(54, 162, 235, 0.2)',
+				borderColor: 'rgba(54, 162, 235, 1)',
+				borderWidth: 1
+			},
+			{
+				label: 'Expected',
+				data: tasksData.map(t => t.ExpectedStock),
+				backgroundColor: 'rgba(255, 0, 0, 0.5)',
+				borderColor: 'rgba(54, 162, 235, 1)',
+				borderWidth: 1
+			}
+			]
+		},
+		options: {
+			scales: {
+				y: {
+					beginAtZero: true
+				}
+			}
+		}
+	});
+</script>
+}
