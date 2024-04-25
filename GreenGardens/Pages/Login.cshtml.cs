@@ -53,6 +53,9 @@ namespace GreenGardens.Pages
                     CookieAuthenticationDefaults.AuthenticationScheme,
                     new ClaimsPrincipal(claimsIdentity),
                     authProperties);
+                // Store email in session
+                HttpContext.Session.SetString("UserEmail", user.EmailAddress);
+
                 return RedirectToPage("Index");
 
             }

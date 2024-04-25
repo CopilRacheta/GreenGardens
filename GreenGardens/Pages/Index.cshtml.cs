@@ -11,7 +11,11 @@ namespace GreenGardens.Pages
 
         public string Username { get; set; }
 
-        public List<OrderModel> Items { get; set; }
+        public List<OrderModel> Order { get; set; }
+
+        public List<CustomersModel> Customers { get; set; }
+
+        public List<ProductModel> Products { get; set; }
 
         private readonly AppDbContext _dbConnection;
         public IndexModel(ILogger<IndexModel> logger , AppDbContext _db)
@@ -23,7 +27,9 @@ namespace GreenGardens.Pages
 
         public void OnGet()
         {
-            Items = _dbConnection.Order.ToList();
+            Order = _dbConnection.Order.ToList();
+            Customers = _dbConnection.Customers.ToList();
+            Products = _dbConnection.Products.ToList();
 
             Username = "DefaultUser";
         }

@@ -48,6 +48,14 @@
                             </li>
                         }
 
+                         @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Account">Account</a>
+                            </li>
+                        }
+
+
 
                         @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                         {
@@ -57,12 +65,6 @@
                         }
 
 
-                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/AddProducts">Add Products</a>
-                            </li>
-                        }
 
                         @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                         {

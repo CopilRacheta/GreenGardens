@@ -3,43 +3,257 @@
 @{
 }
 
-<h2>Tasks Completion Graph</h2>
+<h2>Product  Graphs</h2>
 <div>
-	<canvas id="GreenGardensGraphs"></canvas>
+    <h2> Stock and ExpectedStock</h2>
+    <canvas id="StockandExpectedStock"></canvas>
+</div>
+
+<div>
+    <h2> Product LoyaltyPoints</h2>
+    <canvas id="ProductLoyaltyPoins"></canvas>
+</div>
+
+<div>
+    <h2> Customer LoyaltyPoints</h2>
+    <canvas id="CustomerLoyaltyPoints"></canvas>
+</div>
+
+<div>
+    <h2> Item Prices</h2>
+    <canvas id="ItemPrices"></canvas>
 </div>
 
 @section Scripts {
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-			var ctx = document.getElementById('GreenGardensGraphs').getContext('2d');
-			var tasksData = @Html.Raw(Model.ProductsJson);
-			var tasksGraph = new Chart(ctx, {
-			type: 'bar',
-		data: {
-			labels: tasksData.map(t => new String(t.Name).toString()),
-			datasets: [{
-				label: 'Stock',
-				data: tasksData.map(t => t.Stock),
-				backgroundColor: 'rgba(54, 162, 235, 0.2)',
-				borderColor: 'rgba(54, 162, 235, 1)',
-				borderWidth: 1
-			},
-			{
-				label: 'Expected',
-				data: tasksData.map(t => t.ExpectedStock),
-				backgroundColor: 'rgba(255, 0, 0, 0.5)',
-				borderColor: 'rgba(54, 162, 235, 1)',
-				borderWidth: 1
-			}
-			]
-		},
-		options: {
-			scales: {
-				y: {
-					beginAtZero: true
-				}
-			}
-		}
-	});
+            var ctx = document.getElementById('StockandExpectedStock').getContext('2d');
+            var productData = @Html.Raw(Model.ProductsJson);
+            var productGraph = new Chart(ctx, {
+            type: 'bar',
+        data: {
+            labels: productData.map(t => new String(t.Name).toString()),
+            datasets: [{
+                label: 'Stock',
+                data: productData.map(t => t.Stock),
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            },
+            {
+                label: 'Expected',
+                data: productData.map(t => t.ExpectedStock),
+                backgroundColor: 'rgba(255, 0, 0, 0.5)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }
+            ]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+               var ctx = document.getElementById('ProductLoyaltyPoins').getContext('2d');
+               var productData = @Html.Raw(Model.ProductsJson);
+               var productGraph = new Chart(ctx, {
+               type: 'radar',
+           data: {
+               labels: productData.map(t => new String(t.Name).toString()),
+               datasets: [
+               {
+                   label: 'LoyalityPoints',
+                   data: productData.map(t => t.LoyalityPoints),
+                   backgroundColor: 'rgba(0, 100, 55, 0.5)',
+                   borderColor: 'rgba(54, 162, 235, 1)',
+                   borderWidth: 1
+               },
+               {
+                   label: 'Price',
+                   data: productData.map(t => t.Price),
+                   backgroundColor: 'rgba(10, 150, 25, 0.5)',
+                   borderColor: 'rgba(54, 162, 235, 1)',
+                   borderWidth: 1
+               }
+               ]
+           },
+           options: {
+               scales: {
+
+               }
+
+           }
+       });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+                 var ctx = document.getElementById('CustomerLoyaltyPoints').getContext('2d');
+                 var productData = @Html.Raw(Model.CustomerJson);
+                 var productGraph = new Chart(ctx, {
+                 type: 'polarArea',
+             data: {
+                 labels: productData.map(t => new String(t.Fname).toString()),
+                 datasets: [
+                 {
+                     label: 'LoyalityPoints',
+                     data: productData.map(t => t.LoyalityPoints),
+                     backgroundColor: 'rgba(240, 0, 200, 0.5)',
+                     borderColor: 'rgba(54, 162, 235, 1)',
+                     borderWidth: 1
+                 }
+                 ]
+             },
+             options: {
+                 scales: {
+    r: {
+           pointLabels: {
+             display: true,
+             centerPointLabels: true,
+             font: {
+               size: 18
+             }
+           }
+         }
+                 }
+
+             }
+         });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+            var ctx = document.getElementById('ItemPrices').getContext('2d');
+            var productData = @Html.Raw(Model.ProductsJson);
+            var productGraph = new Chart(ctx, {
+            type: 'line',
+        data: {
+            labels: productData.map(t => new String(t.Name).toString()),
+            datasets: [
+            {
+                label: 'Stock',
+                data: productData.map(t => t.Stock),
+                backgroundColor: 'rgba(200, 200, 0, 0.5)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            },{
+                label: 'Price',
+                data: productData.map(t => t.Price),
+                backgroundColor: 'rgba(100, 50, 10, 0.5)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }
+            ]
+        },
+        options: {
+            scales: {
+
+            }
+
+        }
+    });
+</script>
+
 }
+
+<h2> Top 5 Products In Stock Order</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>ExpectedStock</th>
+            <th>LoyalityPoints</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model.Products.OrderByDescending(p => p.Stock).Take(5))
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Description</td>
+                <td>@product.Price.ToString()</td>
+                <td>@product.Stock.ToString()</td>
+                <td>@product.ExpectedStock.ToString()</td>
+                <td>@product.LoyalityPoints.ToString()</td>
+            </tr>
+        }
+
+
+
+    </tbody>
+</table>
+
+<h2> Top 5 Products In Descendingbt ExpectedStock Order</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>ExpectedStock</th>
+            <th>LoyalityPoints</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model.Products.OrderByDescending(p => p.ExpectedStock).Take(5))
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Description</td>
+                <td>@product.Price.ToString()</td>
+                <td>@product.Stock.ToString()</td>
+                <td>@product.ExpectedStock.ToString()</td>
+                <td>@product.LoyalityPoints.ToString()</td>
+            </tr>
+        }
+
+
+
+    </tbody>
+</table>
+
+
+<h2> Top 5 Products In Price Order</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>ExpectedStock</th>
+            <th>LoyalityPoints</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model.Products.OrderByDescending(p => p.Price).Take(5))
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Description</td>
+                <td>@product.Price.ToString()</td>
+                <td>@product.Stock.ToString()</td>
+                <td>@product.ExpectedStock.ToString()</td>
+                <td>@product.LoyalityPoints.ToString()</td>
+            </tr>
+        }
+
+
+
+    </tbody>
+</table>

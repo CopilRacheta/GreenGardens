@@ -1,0 +1,36 @@
+﻿@page
+@model GreenGardens.Pages.AccountModel
+@{
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th><h2 class="display-4">Account</h2></th>
+        </tr>
+
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Loyalty Points</th>
+        </tr>
+
+    </thead>
+    <tbody>
+        
+        @foreach (var customer in Model.Customers)
+        {
+            <tr>
+                <td>@customer.Fname</td>
+                <td>@customer.Sname</td>
+                <td>@customer.EmailAddress</td>
+                <td>@customer.LoyalityPoints</td>
+            </tr>
+        }
+
+
+
+
+    </tbody>
+</table>

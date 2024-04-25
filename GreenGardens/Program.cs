@@ -7,6 +7,24 @@ var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
+// Register the DbContext for the application, specifying to use SQL Server with the connection string obtained earlier.
+// AppDbContext is the class managing the database context.
+builder.Services.AddDbContext<AppDbContext>(option => option.UseSqlServer(connectionString));
+//Register a singleton instance of product
+builder.Services.AddSingleton<CustomersModel>();
+builder.Services.AddSingleton<ProductModel>();
+builder.Services.AddSingleton<OrderModel>();
+// Add services to the container.
+builder.Services.AddRazorPages();
+builder.Services.AddDistributedMemoryCache();  // Necessary for session state
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // Set session timeout
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
+
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<AppDbContext>(option => option.UseSqlServer(connectionString));
@@ -40,5 +58,8 @@ app.MapRazorPages();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapRazorPages();
+app.UseSession();
 
 app.Run();

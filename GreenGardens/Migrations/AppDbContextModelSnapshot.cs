@@ -67,7 +67,20 @@ namespace GreenGardens.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CustomersId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("CustomersId");
+
+                    b.HasIndex("ProductId");
 
                     b.ToTable("Order");
                 });
@@ -108,6 +121,25 @@ namespace GreenGardens.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("GreenGardens.Model.OrderModel", b =>
+                {
+                    b.HasOne("GreenGardens.Model.CustomersModel", "Customers")
+                        .WithMany()
+                        .HasForeignKey("CustomersId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GreenGardens.Model.ProductModel", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customers");
+
+                    b.Navigation("Product");
                 });
 #pragma warning restore 612, 618
         }

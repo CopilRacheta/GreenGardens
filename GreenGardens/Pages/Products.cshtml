@@ -1,10 +1,12 @@
 ﻿@page
 @model GreenGardens.Pages.ProductsModel
-@{
+</h2>
+@if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+{
+    <a asp-page="/AddProducts" class="btn btn-primary">Add Product</a>
+
 }
 
-
-<h2>Products</h2>
 
 <table class="table">
     <thead>
@@ -15,6 +17,7 @@
             <th>Price</th>
             <th>Stock</th>
             <th>ExpectedStock</th>
+            <th>LoyalityPoints</th>
 
         </tr>
     </thead>
@@ -22,23 +25,95 @@
         @foreach (var product in Model.Products)
         {
             <tr>
-                <td>@product.Name</td>
-                <td>
-                    <img src="@product.ImagePath" alt="Product Image" style="width:100px">
-                </td>
-                <td>@product.Description</td>
-                <td>@product.Price.ToString()</td>
-                <td>@product.Stock.ToString()</td>
-                <td>@product.ExpectedStock.ToString()</td>
-                <td>@product.LoyalityPoints.ToString()</td>
-                <td>
-                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
-                    {
-                        <a asp-page="/EditProduct" asp-route-id="@product.Id" class="btn btn-primary">Edit</a>
+                @if (@product.Stock < @product.ExpectedStock)
+                {
+                <tr style="background-color:red">
+                    <td>@product.Name</td>
+                    <td>
+                        <img src="@product.ImagePath" alt="Product Image" style="width:100px">
+                    </td>
+                    <td>@product.Description</td>
+                    <td>@product.Price.ToString()</td>
+                    <td>@product.Stock.ToString()</td>
+                    <td>@product.ExpectedStock.ToString()</td>
+                    <td>@product.LoyalityPoints.ToString()</td>
 
-                    }
-                </td>
-            </tr>
+                    <td>
+                            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                            {
+                            <a asp-page="/EditProduct" asp-route-id="@product.Id" class="btn btn-primary">Edit</a>
+
+                            }
+                    </td>
+                    <td>
+                            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                            {
+                            <a asp-page="/RemoveProduct" asp-route-id="@product.Id" class="btn btn-primary">Remove</a>
+
+                            }
+                    </td>
+                </tr>
+                }
+
+                else if (@product.Stock > @product.ExpectedStock)
+                {
+                <tr style="background-color:lightgreen">
+                    <td>@product.Name</td>
+                    <td>
+                        <img src="@product.ImagePath" alt="Product Image" style="width:100px">
+                    </td>
+                    <td>@product.Description</td>
+                    <td>@product.Price.ToString()</td>
+                    <td>@product.Stock.ToString()</td>
+                    <td>@product.ExpectedStock.ToString()</td>
+                    <td>@product.LoyalityPoints.ToString()</td>
+
+                    <td>
+                            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                            {
+                            <a asp-page="/EditProduct" asp-route-id="@product.Id" class="btn btn-primary">Edit</a>
+
+                            }
+                    </td>
+                    <td>
+                            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                            {
+                            <a asp-page="/RemoveProduct" asp-route-id="@product.Id" class="btn btn-primary">Remove</a>
+
+                            }
+                    </td>
+                </tr>
+                }
+                else
+                {
+
+            <td>@product.Name</td>
+            <td>
+                <img src="@product.ImagePath" alt="Product Image" style="width:100px">
+            </td>
+            <td>@product.Description</td>
+            <td>@product.Price.ToString()</td>
+            <td>@product.Stock.ToString()</td>
+            <td>@product.ExpectedStock.ToString()</td>
+            <td>@product.LoyalityPoints.ToString()</td>
+
+            <td>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                    <a asp-page="/EditProduct" asp-route-id="@product.Id" class="btn btn-primary">Edit</a>
+
+                        }
+            </td>
+            <td>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                    <a asp-page="/RemoveProduct" asp-route-id="@product.Id" class="btn btn-primary">Remove</a>
+
+                        }
+            </td>
+                }
+
+        </tr>
         }
 
 

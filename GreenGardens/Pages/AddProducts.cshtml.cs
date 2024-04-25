@@ -30,7 +30,7 @@ namespace GreenGardens.Pages
 
             _dbConnection.Products.Add(Product);
             _dbConnection.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToPage("Products");
         }
     }
 }
