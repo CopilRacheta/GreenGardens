@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-page="/Index">Green Gardens</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -23,24 +23,6 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Basket">Basket</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Blog">Blog</a>
-                        </li>
-
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Shop">Shop</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-
-
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
@@ -48,6 +30,27 @@
                             </li>
                         }
 
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Blog">Blog</a>
+                        </li>
+
+
+                        @if (!User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Shop">Shop</a>
+                            </li>
+                        }
+
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark my-2 my-sm-0" asp-area="" asp-page="/Basket">Basket</a>
+                        </li>
+
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                        </li>
 
 
                         @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
@@ -81,6 +84,10 @@
                 </div>
             </div>
         </nav>
+
+
+
+
     </header>
     <div class="container">
         <main role="main" class="pb-3">
