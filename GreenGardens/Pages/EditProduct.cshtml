@@ -1,4 +1,4 @@
-﻿@page "{id:int}"
+﻿@page "{ProductId:int}"
 @model GreenGardens.Pages.EditProductModel
 @{
     ViewData["Title"] = "Edit Product";
@@ -7,7 +7,7 @@
 <h1>Edit Item</h1>
 
 <form method="post">
-    <input type="hidden" asp-for="Product.Id" />
+    <input type="hidden" asp-for="Product.ProductId" />
 
     <div class="form-group">
         <label>Product Name</label>

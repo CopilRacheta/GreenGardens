@@ -27,7 +27,7 @@ namespace GreenGardens.Pages
 
         public void OnGet()
         {
-            Order = _dbConnection.Order.ToList();
+            Order = _dbConnection.Orders.ToList();
             Customers = _dbConnection.Customers.ToList();
             Products = _dbConnection.Products.ToList();
 

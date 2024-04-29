@@ -1,0 +1,38 @@
+﻿@page
+@model GreenGardens.Pages.OrderConfirmationModel
+@{
+}
+<h2>Order Confirmation</h2>
+<p>Thank you for your purchase!</p>
+
+@if (Model.Order != null)
+{
+    <div>
+        <h4>Order ID: @Model.OrderId</h4>
+        <h4>Order Date: @Model.Order.OrderDate.ToString("dd/MM/yyyy")</h4>
+        <h4>Total Amount (Need to add): @Model.Order.Total</h4>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderItems)
+            {
+                <tr>
+                    <td>@item.Product.Name</td>
+                    <td>@item.Quantity</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Order not found.</p>
+}

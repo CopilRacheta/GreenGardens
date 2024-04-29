@@ -1,16 +1,21 @@
 ﻿using System.ComponentModel.DataAnnotations;
+
 namespace GreenGardens.Model
 {
     public class OrderModel
     {
         [Key]
-        public int Id { get; set; }
+        public int OrderId { get; set; }
 
-        public int CustomerId { get; set; }
-        public  CustomersModel Customers { get; set; }
+        [Required]
+        public string CustomerId { get; set; }
 
-        public int ProductId { get; set; }
+        public DateTime OrderDate { get; set; } = DateTime.Now;
 
-        public ProductModel Product { get; set; }
+        public virtual List<OrderItem> Items { get; set; } = new List<OrderItem>();
+
+        public decimal Total { get; set; }  
+
+       
     }
 }

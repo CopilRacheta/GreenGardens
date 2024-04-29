@@ -25,6 +25,9 @@ builder.Services.AddSession(options =>
 });
 
 
+
+
+
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<AppDbContext>(option => option.UseSqlServer(connectionString));

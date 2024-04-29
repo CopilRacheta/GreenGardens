@@ -11,23 +11,29 @@
             <th>Image</th>
             <th>Description</th>
             <th>Price</th>
-            <th>Stock</th>
-            <th>LoyalityPoints</th>
-
         </tr>
     </thead>
     <tbody>
+
+
         @foreach (var product in Model.Products)
         {
-
-
-        <td>@product.Name</td>
-        <td>
-            <img src="@product.ImagePath" alt="Product Image" style="width:100px">
-        </td>
-        <td>@product.Description</td>
-        <td>@product.Price.ToString()</td>
-        <td>@product.Stock.ToString()</td>
-        <td>@product.LoyalityPoints.ToString()</td>
+            <tr>
+                <td>@product.Name</td>
+                <td>
+                    <img src="@product.ImagePath" alt="Product Image" style="width:100px">
+                </td>
+                <td>@product.Description</td>
+                <td>@product.Price.ToString()</td>
+                <td>
+                    <form method="post" asp-page-handler="AddToBasket" asp-route-productId="@product.ProductId">
+                        <button type="submit" class="btn btn-primary">Add to Basket</button>
+                    </form>
+                </td>
+            </tr>
 
         }
+
+
+
+</table>

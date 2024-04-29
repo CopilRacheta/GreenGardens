@@ -1,4 +1,4 @@
-﻿@page "{id:int}"
+﻿@page "{ProductId:int}"
 @model GreenGardens.Pages.RemoveProductModel
 @{
     ViewData["Title"] = "Remove Product";
@@ -9,7 +9,7 @@
 <p><strong>Description:</strong> @Model.Product.Description</p>
 
 <form method="post">
-    <input type="hidden" asp-for="Product.Id" />
+    <input type="hidden" asp-for="Product.ProductId" />
     <button type="submit" class="btn btn-danger">Delete</button>
     <a asp-page="Index" class="btn btn-secondary">Cancel</a>
 </form>
