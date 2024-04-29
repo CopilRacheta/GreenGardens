@@ -4,25 +4,28 @@
     ViewData["Title"] = "Home page";
 
     <div class="text-center">
-        <h1 class="display-4">Welcome</h1>
-        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">Green Gardens</a>.</p>
+        <h1 class="display-4">Welcome To Green Garden</h1>
+
     </div>
 
 
-    @if (!User.Identity.IsAuthenticated)
-    {
+    <div class="d-grid gap-2 col-6 mx-auto">
+        @if (!User.Identity.IsAuthenticated)
+        {
 
-            <a button  class="btn btn-primary"  class="nav-link text-dark" asp-area="" asp-page="/Register">Register</a>
+            <a button class="btn btn-primary" asp-area="" asp-page="/Register">Register</a>
 
-    }
-    
+        }
+        @if (!User.Identity.IsAuthenticated)
+        {
 
+            <a button class="btn btn-warning" asp-area="" asp-page="/Login">Login</a>
 
+        }
+    </div>
 
-    @if (!User.Identity.IsAuthenticated)
-    {
-
-        <a button class="btn btn-warning" class="nav-link text-dark" asp-area="" asp-page="/Login">Login</a>
-
-    }
 }
+<img src="~/Images/GreenGarden.jpg" class="img-fluid" alt="...">
+
+<img src="~Images/GreenGarden.jpg" />
+<img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.britannica.com%2Fscience%2Fgardening&psig=AOvVaw0pVu3p2uTqGi-9p-phFe7Q&ust=1714497071180000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCNDfhLj154UDFQAAAAAdAAAAABAE" />
