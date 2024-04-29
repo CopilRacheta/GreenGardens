@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GreenGardens.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240425134003_CustomerModel")]
-    partial class CustomerModel
+    [Migration("20240425195650_Add-Migration CustomerModel")]
+    partial class AddMigrationCustomerModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

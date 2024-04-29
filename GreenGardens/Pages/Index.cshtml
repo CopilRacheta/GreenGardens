@@ -2,9 +2,27 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
-}
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">Green Gardens</a>.</p>
-</div>
+    <div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">Green Gardens</a>.</p>
+    </div>
+
+
+    @if (!User.Identity.IsAuthenticated)
+    {
+
+            <a button  class="btn btn-primary"  class="nav-link text-dark" asp-area="" asp-page="/Register">Register</a>
+
+    }
+    
+
+
+
+    @if (!User.Identity.IsAuthenticated)
+    {
+
+        <a button class="btn btn-warning" class="nav-link text-dark" asp-area="" asp-page="/Login">Login</a>
+
+    }
+}

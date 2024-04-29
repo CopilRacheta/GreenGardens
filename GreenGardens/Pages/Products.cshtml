@@ -1,6 +1,10 @@
 ﻿@page
 @model GreenGardens.Pages.ProductsModel
-</h2>
+@{
+    ViewData["Title"] = "Products";
+}
+
+
 @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
 {
     <a asp-page="/AddProducts" class="btn btn-primary">Add Product</a>

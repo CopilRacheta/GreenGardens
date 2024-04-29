@@ -1,4 +1,35 @@
 ﻿@page
 @model GreenGardens.Pages.ShopModel
 @{
+    ViewData["Title"] = "Shop";
 }
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>ExpectedStock</th>
+            <th>LoyalityPoints</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model.Products)
+        {
+
+
+        <td>@product.Name</td>
+        <td>
+            <img src="@product.ImagePath" alt="Product Image" style="width:100px">
+        </td>
+        <td>@product.Description</td>
+        <td>@product.Price.ToString()</td>
+        <td>@product.Stock.ToString()</td>
+        <td>@product.ExpectedStock.ToString()</td>
+        <td>@product.LoyalityPoints.ToString()</td>
+
+        }

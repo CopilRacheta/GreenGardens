@@ -4,7 +4,7 @@
 
 namespace GreenGardens.Migrations
 {
-    public partial class CustomerModel : Migration
+    public partial class AddMigrationCustomerModel : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
