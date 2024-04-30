@@ -18,7 +18,7 @@ namespace GreenGardens.Model
         [Required]
         public int ProductId { get; set; }
 
-        [ForeignKey("ProductId")]
+        [ForeignKey("Id")]
         public ProductModel Product { get; set; }
 
         public int Quantity {  get; set; }

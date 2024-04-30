@@ -37,7 +37,7 @@ namespace GreenGardens.Pages
                 return Page();
             }
 
-            var productToUpdate = await _dbConnection.Products.FindAsync(Product.ProductId);
+            var productToUpdate = await _dbConnection.Products.FindAsync(Product.Id);
 
             if(productToUpdate == null)
             {

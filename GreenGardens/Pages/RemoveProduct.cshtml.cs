@@ -20,12 +20,12 @@ namespace GreenGardens.Pages
         }
         public void OnGet(int id)
         {
-            Product = _dbConnection.Products.FirstOrDefault(p => p.ProductId == id);
+            Product = _dbConnection.Products.FirstOrDefault(p => p.Id == id);
         }
 
         public async Task<IActionResult> OnPostAsync(int id)
         {
-            var productToDelete = _dbConnection.Products.FirstOrDefault(t=> t.ProductId ==id);
+            var productToDelete = _dbConnection.Products.FirstOrDefault(t=> t.Id ==id);
             if (productToDelete != null)
             {
                 _dbConnection.Products.Remove(productToDelete);

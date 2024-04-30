@@ -1,19 +1,22 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using GreenGardens.Model;
 using GreenGardens.Data;
+using GreenGardens.Model;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http; // Add this namespace for HttpContext.Session
+
 
 namespace GreenGardens.Pages
 {
-    public class ShopModel : PageModel
+    public class BasketsModel : PageModel
     {
-
         private readonly AppDbContext _db;
 
-        public ShopModel(AppDbContext db)
+        public BasketsModel(AppDbContext db)
         {
-           _db = db;
+            _db = db;
         }
 
         [BindProperty]
@@ -28,8 +31,8 @@ namespace GreenGardens.Pages
 
         public async Task<IActionResult> OnPostAddToBasketAsync(int productId)
         {
-            var customerId = HttpContext.Session.GetString("CustomerId");
-            if (string.IsNullOrEmpty(customerId))
+            var emailAdress = HttpContext.Session.GetString("UserId");
+            if (string.IsNullOrEmpty(emailAdress))
             {
                 return RedirectToPage("/Login");
             }
@@ -40,11 +43,21 @@ namespace GreenGardens.Pages
                 return NotFound();
             }
 
-            //var basketItem = new BasketModel { ProductId = productToAdd.ProductId, CustomerId = customerId };
-            //_db.Baskets.Add(basketItem);
+            // Instantiate BasketModel with required parameters
+            var basketItem = new BasketModel
+            {
+                ProductId = productToAdd.Id,
+                EmailAddress = emailAdress
+            };
+
+            // Add the basket item to the database context and save changes
+            _db.Basket.Add(basketItem);
             await _db.SaveChangesAsync();
-            return RedirectToPage(); // Refresh the page or redirect to a confirmation page
+
+            // Redirect to the current page (refresh)
+            return RedirectToPage();
         }
 
     }
 }
+

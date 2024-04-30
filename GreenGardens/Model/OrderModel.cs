@@ -8,7 +8,7 @@ namespace GreenGardens.Model
         public int OrderId { get; set; }
 
         [Required]
-        public string CustomerId { get; set; }
+        public string EmailAddress { get; set; }
 
         public DateTime OrderDate { get; set; } = DateTime.Now;
 

@@ -22,7 +22,7 @@ namespace GreenGardens.Pages
         {
             _db = db;
         }
-
+        
         public async Task<IActionResult> OnGetAsync(int orderId)
         {
             OrderId = orderId;
@@ -39,5 +39,6 @@ namespace GreenGardens.Pages
             OrderItems = Order.Items.ToList();
             return Page();
         }
+       
     }
 }

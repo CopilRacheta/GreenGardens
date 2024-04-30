@@ -6,7 +6,7 @@ namespace GreenGardens.Model
     public class ProductModel
     {
         [Key]
-        public int ProductId { get; set; }
+        public int Id { get; set; }
 
         [Required,StringLength(100)]
         public string Name { get; set; }

@@ -34,16 +34,15 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/Blog">Blog</a>
                         </li>
 
-
                         @if (!User.IsInRole("Admin"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Shop">Shop</a>
+                                <a class="nav-link text-dark" asp-area="" asp-page="/BasketsModel">Shop</a>
                             </li>
                         }
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Redeem">Explore Rewardss</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Redeem">Explore Rewards</a>
                         </li>
 
 

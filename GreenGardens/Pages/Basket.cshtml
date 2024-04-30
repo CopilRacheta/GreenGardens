@@ -1,11 +1,11 @@
 ﻿@page
-@model GreenGardens.Pages.BasketModel
+@model GreenGardens.Pages.Basket
 @{
 }
 
 <h2>Your Basket</h2>
 
-@if (Model.BasketItem != null && Model.BasketItem.Any())
+@if (Model.BasketItems != null && Model.BasketItems.Any())
 {
     <table class="table">
         <thead>
@@ -16,7 +16,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.BasketItem)
+            @foreach (var item in Model.BasketItems)
             {
                 <tr>
                     <td>@item.ProductName</td>

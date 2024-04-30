@@ -1,5 +1,5 @@
 ﻿@page
-@model GreenGardens.Pages.ShopModel
+@model GreenGardens.Pages.BasketsModel
 @{
     ViewData["Title"] = "Shop";
 }
@@ -26,7 +26,7 @@
                 <td>@product.Description</td>
                 <td>@product.Price.ToString()</td>
                 <td>
-                    <form method="post" asp-page-handler="AddToBasket" asp-route-productId="@product.ProductId">
+                    <form method="post" asp-page-handler="AddToBasket" asp-route-productId="@product.Id">
                         <button type="submit" class="btn btn-primary">Add to Basket</button>
                     </form>
                 </td>

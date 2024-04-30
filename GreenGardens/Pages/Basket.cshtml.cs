@@ -9,18 +9,16 @@ using GreenGardens.Data;
 
 namespace GreenGardens.Pages
 {
-    public class BasketModel : PageModel
+    public class Basket : PageModel
     {
         private readonly AppDbContext _db;
 
-        public BasketModel(AppDbContext db)
+        public Basket(AppDbContext db)
         {
             _db = db;
         }
 
         public List<BasketProductViewModel> BasketItems { get; set; }
-        public string CustomerId { get; internal set; }
-        public int ProductId { get; internal set; }
 
         public class BasketProductViewModel
         {
@@ -35,12 +33,12 @@ namespace GreenGardens.Pages
 
         public async Task OnGetAsync()
         {
-            string customerId = HttpContext.Session.GetString("CustomerId");
+            string emailAdress = HttpContext.Session.GetString("UserId");
 
-            if (!string.IsNullOrEmpty(customerId))
+            if (!string.IsNullOrEmpty(emailAdress))
             {
-                BasketItems = await _db.Baskets
-                .Where(b => b.CustomerId == customerId)
+                BasketItems = await _db.Basket
+                .Where(b => b.EmailAddress == emailAdress)
                 .Select(b => new BasketProductViewModel
                 {
                     BasketId = b.BasketId,
@@ -52,24 +50,25 @@ namespace GreenGardens.Pages
 
 
             }
+        
         }
-
+        
         public async Task<IActionResult> OnPostCheckoutAsync()
         {
-            string customerId = HttpContext.Session.GetString("CustomerId");
-            if (string.IsNullOrEmpty(customerId))
+            string emailAdress = HttpContext.Session.GetString("UserId");
+            if (string.IsNullOrEmpty(emailAdress))
             {
                 return RedirectToPage("/Login");
             }
 
-            var basketItems = await _db.Baskets.Where(b => b.CustomerId == customerId).ToListAsync();
+            var basketItems = await _db.Basket.Where(b => b.EmailAddress == emailAdress).ToListAsync();
             if (!basketItems.Any())
             {
                 return Page(); // No items in the basket
             }
 
             // Create a new order
-            var order = new OrderModel { CustomerId = customerId };
+            var order = new OrderModel { EmailAddress = emailAdress };
             _db.Orders.Add(order);
             await _db.SaveChangesAsync(); // Save to get OrderId
 
@@ -85,7 +84,7 @@ namespace GreenGardens.Pages
                 _db.OrderItems.Add(orderItem);
 
                 // Remove the item from the basket
-                _db.Baskets.Remove(item);
+                _db.Basket.Remove(item);
             }
 
             await _db.SaveChangesAsync(); // Final save to update database
@@ -93,5 +92,6 @@ namespace GreenGardens.Pages
             return RedirectToPage("/OrderConfirmation", new { orderId = order.OrderId });
 
         }
+        
     }
 }

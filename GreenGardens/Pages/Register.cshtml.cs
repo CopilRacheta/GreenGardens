@@ -30,6 +30,7 @@ namespace GreenGardens.Pages
             {
                 return Page();
             }
+            
             Customer.LoyalityPoints = 10;
             Customer.Password = HashPassword(Customer.Password);
             _context.Customers.Add(Customer);

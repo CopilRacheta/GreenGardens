@@ -56,6 +56,9 @@ namespace GreenGardens.Pages
                 // Store email in session
                 HttpContext.Session.SetString("UserEmail", user.EmailAddress);
 
+                HttpContext.Session.SetString("UserId", user.EmailAddress);
+
+
                 return RedirectToPage("Index");
 
             }

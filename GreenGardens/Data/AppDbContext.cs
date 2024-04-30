@@ -13,7 +13,7 @@ namespace GreenGardens.Data
 
         public DbSet<ProductModel> Products { get; set; }
 
-        public DbSet<BasketModel> Baskets { get; set; }
+        public DbSet<BasketModel> Basket { get; set; }
 
         public DbSet<CustomersModel> Customers { get; set; }
         public DbSet<OrderModel> Orders { get; set; }

@@ -5,7 +5,7 @@ namespace GreenGardens.Model
     public class CustomersModel
     {
         [Key]
-        public string CustomerId { get; set; }
+        public int CustomerId { get; set; }
 
         [Required, StringLength(100)]
         [Display(Name ="FirstName")]
