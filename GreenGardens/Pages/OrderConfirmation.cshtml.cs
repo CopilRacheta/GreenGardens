@@ -11,22 +11,22 @@ namespace GreenGardens.Pages
 {
     public class OrderConfirmationModel : PageModel
     {
-        private readonly AppDbContext _context;
+        private readonly AppDbContext _db;
 
-        public int OrderId {  get; set; }
+        public int OrderId { get; set; }
         public OrderModel Order { get; set; }
 
         public List<OrderItem> OrderItems { get; set; }
 
-        public OrderConfirmationModel(AppDbContext context)
+        public OrderConfirmationModel(AppDbContext db)
         {
-            _context = context;
+            _db = db;
         }
 
-        public async Task<IActionResult> OnGetAsync (int orderId)
+        public async Task<IActionResult> OnGetAsync(int orderId)
         {
             OrderId = orderId;
-            Order = await _context.Orders
+            Order = await _db.Orders
                 .Include(o => o.Items)
                 .ThenInclude(i => i.Product)
                 .FirstOrDefaultAsync(o => o.OrderId == orderId);
@@ -39,6 +39,5 @@ namespace GreenGardens.Pages
             OrderItems = Order.Items.ToList();
             return Page();
         }
-        
     }
 }

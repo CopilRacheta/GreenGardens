@@ -18,7 +18,7 @@ namespace GreenGardens.Model
 
         public int Quantity { get; set; } = 1;
 
-        public int CustomerId {  get; set; }
+        public string CustomerId {  get; set; }
 
     }
 }

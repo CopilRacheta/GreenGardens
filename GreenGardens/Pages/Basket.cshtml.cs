@@ -18,7 +18,7 @@ namespace GreenGardens.Pages
             _db = db;
         }
 
-        public List<BasketProductViewModel> BasketItem { get; set; }
+        public List<BasketProductViewModel> BasketItems { get; set; }
         public string CustomerId { get; internal set; }
         public int ProductId { get; internal set; }
 
@@ -37,10 +37,10 @@ namespace GreenGardens.Pages
         {
             string customerId = HttpContext.Session.GetString("CustomerId");
 
-            if(!string.IsNullOrEmpty(customerId) )
+            if (!string.IsNullOrEmpty(customerId))
             {
-                BasketItem = await _db.Baskets
-                .Where(b => b.CustomerId.ToString() == customerId)
+                BasketItems = await _db.Baskets
+                .Where(b => b.CustomerId == customerId)
                 .Select(b => new BasketProductViewModel
                 {
                     BasketId = b.BasketId,
@@ -62,7 +62,7 @@ namespace GreenGardens.Pages
                 return RedirectToPage("/Login");
             }
 
-            var basketItems = await _db.Baskets.Where(b => b.CustomerId.ToString() == customerId).ToListAsync();
+            var basketItems = await _db.Baskets.Where(b => b.CustomerId == customerId).ToListAsync();
             if (!basketItems.Any())
             {
                 return Page(); // No items in the basket
@@ -91,7 +91,7 @@ namespace GreenGardens.Pages
             await _db.SaveChangesAsync(); // Final save to update database
 
             return RedirectToPage("/OrderConfirmation", new { orderId = order.OrderId });
-        }
 
+        }
     }
 }

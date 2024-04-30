@@ -9,11 +9,11 @@ namespace GreenGardens.Pages
     public class ShopModel : PageModel
     {
 
-        private readonly AppDbContext _context;
+        private readonly AppDbContext _db;
 
-        public ShopModel(AppDbContext context)
+        public ShopModel(AppDbContext db)
         {
-            _context = context;
+           _db = db;
         }
 
         [BindProperty]
@@ -23,25 +23,26 @@ namespace GreenGardens.Pages
 
         public void OnGet()
         {
-            Products = _context.Products.ToList();
+            Products = _db.Products.ToList();
         }
 
         public async Task<IActionResult> OnPostAddToBasketAsync(int productId)
         {
             var customerId = HttpContext.Session.GetString("CustomerId");
-            if(string.IsNullOrEmpty(customerId)) 
+            if (string.IsNullOrEmpty(customerId))
             {
                 return RedirectToPage("/Login");
             }
 
-            var productToAdd = await _context.Products.FindAsync(productId);
+            var productToAdd = await _db.Products.FindAsync(productId);
             if (productToAdd == null)
             {
                 return NotFound();
             }
-           // var basketItem = new BasketModel { ProductId = productToAdd.ProductId, CustomerId = customerId };
-            //_context.Baskets.Add(basketItem);
-            await _context.SaveChangesAsync();
+
+            //var basketItem = new BasketModel { ProductId = productToAdd.ProductId, CustomerId = customerId };
+            //_db.Baskets.Add(basketItem);
+            await _db.SaveChangesAsync();
             return RedirectToPage(); // Refresh the page or redirect to a confirmation page
         }
 
